@@ -16,7 +16,7 @@ func (re *RequestEvent) Tags() map[string]string {
 		"upstream_uri": re.Upstream,
 		"request_uri": re.Request.uri,
 		"request_method": re.Request.method,
-		"client": re.Request.headers.Authorization,
+		"client": re.Request.headers.x-consumer-username,
 		"response_status": re.Response.status,
 		"response_size": re.Response.size
 	}
