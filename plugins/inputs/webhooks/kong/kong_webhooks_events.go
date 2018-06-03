@@ -5,20 +5,35 @@ type Event interface {
 	Fields() map[string]interface{}
 }
 
+type Headers struct {
+	X-consumer-usermane	string `json:"x-consumer-username"`
+}
+
+type Request struct {
+	Uri	    string  `json:"uri"`
+	Method	string  `json: "method"`
+	Headers Headers `json: "headers"`
+}
+
+type Response struct {
+	Status string `json:"status"`
+	Size   string `json:"size"`
+}
+
 type RequestEvent struct {
-	Upstream	string `json:"upstream_uri"`
-	Request     string `json:"request"`
-	Response    string `json:"response"`
+	Upstream	string   `json:"upstream_uri"`
+	Request     Request  `json:"request"`
+	Response    Response `json:"response"`
 }
 
 func (re *RequestEvent) Tags() map[string]string {
 	return map[string]string{
 		"upstream_uri": re.Upstream,
-		"request_uri": re.Request.uri,
-		"request_method": re.Request.method,
-		"client": re.Request.headers.x-consumer-username,
-		"response_status": re.Response.status,
-		"response_size": re.Response.size,
+		"request_uri": re.Request.Uri,
+		"request_method": re.Request.Method,
+		"client": re.Request.Headers.X-consumer-username,
+		"response_status": re.Response.Status,
+		"response_size": re.Response.Size,
 	}
 }
 
