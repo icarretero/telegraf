@@ -18,7 +18,7 @@ func (re *RequestEvent) Tags() map[string]string {
 		"request_method": re.Request.method,
 		"client": re.Request.headers.x-consumer-username,
 		"response_status": re.Response.status,
-		"response_size": re.Response.size
+		"response_size": re.Response.size,
 	}
 }
 
