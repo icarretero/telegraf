@@ -6,13 +6,13 @@ type Event interface {
 }
 
 type Headers struct {
-	X-consumer-usermane	string `json:"x-consumer-username"`
+	XConsumerUsermane string `json:"x-consumer-username"`
 }
 
 type Request struct {
-	Uri	    string  `json:"uri"`
-	Method	string  `json: "method"`
-	Headers Headers `json: "headers"`
+	Uri     string  `json:"uri"`
+	Method  string  `json:"method"`
+	Headers Headers `json:"headers"`
 }
 
 type Response struct {
@@ -21,19 +21,19 @@ type Response struct {
 }
 
 type RequestEvent struct {
-	Upstream	string   `json:"upstream_uri"`
-	Request     Request  `json:"request"`
-	Response    Response `json:"response"`
+	Upstream string   `json:"upstream_uri"`
+	Request  Request  `json:"request"`
+	Response Response `json:"response"`
 }
 
 func (re *RequestEvent) Tags() map[string]string {
 	return map[string]string{
-		"upstream_uri": re.Upstream,
-		"request_uri": re.Request.Uri,
-		"request_method": re.Request.Method,
-		"client": re.Request.Headers.X-consumer-username,
+		"upstream_uri":    re.Upstream,
+		"request_uri":     re.Request.Uri,
+		"request_method":  re.Request.Method,
+		"client":          re.Request.Headers.XConsumerUsername,
 		"response_status": re.Response.Status,
-		"response_size": re.Response.Size,
+		"response_size":   re.Response.Size,
 	}
 }
 
