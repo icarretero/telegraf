@@ -6,7 +6,7 @@ type Event interface {
 }
 
 type Headers struct {
-	XConsumerUsermane string `json:"x-consumer-username"`
+	XConsumerUsername string `json:"x-consumer-username"`
 }
 
 type Request struct {
